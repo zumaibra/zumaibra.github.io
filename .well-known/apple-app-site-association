@@ -1,0 +1,10 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["QF2LS4AS38.com.zumaibra.tandara"],
+        "components": [{ "/": "/j*", "comment": "Tandara shared-list invites; the code is in the fragment" }]
+      }
+    ]
+  }
+}

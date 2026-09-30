@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <!-- The invite code lives in the URL fragment (#TND3.…). Browsers never send
+       the fragment to this server, and nothing here sends it anywhere else. -->
+  <title>Gabung list di Tandara</title>
+  <style>
+    :root {
+      --paper: #fbfaf5; --ink: #253a82; --text: #22252b; --muted: #6b6f78;
+      --rule: #d9e0ee; --margin: #e9a3a3;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; color: var(--text); background: var(--paper);
+      font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-image:
+        linear-gradient(90deg, transparent 43px, var(--margin) 43px, var(--margin) 44px, transparent 44px),
+        repeating-linear-gradient(transparent 0 35px, var(--rule) 35px 36px);
+    }
+    main { max-width: 440px; padding: 72px 20px 40px 60px; }
+    h1 { font-size: 30px; line-height: 1.2; margin: 0 0 12px; }
+    p { margin: 0 0 20px; color: var(--muted); }
+    .button {
+      display: block; text-align: center; text-decoration: none; font-weight: 600;
+      padding: 14px 16px; border-radius: 12px; margin-bottom: 12px;
+    }
+    .primary { background: var(--ink); color: #fff; }
+    .secondary { border: 1px solid var(--rule); color: var(--ink); background: #fff; }
+    .note { font-size: 14px; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <main>
+    <div id="invite" class="hidden">
+      <h1>Gabung list di Tandara</h1>
+      <p>Seseorang mengajak Anda mengisi list bersama. Buka link ini di HP yang sudah terpasang Tandara.</p>
+      <a id="open" class="button primary" href="#">Buka di Tandara</a>
+      <p class="note">Belum punya Tandara? Aplikasinya segera hadir di App Store dan Play Store. Setelah terpasang, ketuk link undangan ini lagi.</p>
+    </div>
+    <div id="missing" class="hidden">
+      <h1>Link tidak lengkap</h1>
+      <p>Link undangan ini terpotong. Minta link baru ke orang yang mengajak Anda.</p>
+    </div>
+  </main>
+  <script>
+    (function () {
+      var code = decodeURIComponent(location.hash.slice(1));
+      var valid = /^TND3\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/.test(code);
+      document.getElementById(valid ? "invite" : "missing").classList.remove("hidden");
+      if (valid) document.getElementById("open").href = "tandara://j#" + code;
+    })();
+  </script>
+</body>
+</html>
